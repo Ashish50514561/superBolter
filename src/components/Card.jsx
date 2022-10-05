@@ -1,17 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Grid,
   Stack,
-  Rating,
   Box,
-  CardActions,
   Button,
   Card,
   CardMedia,
-  CardContent,
   Typography,
   TextField,
   IconButton,
@@ -24,9 +21,9 @@ import {
 } from "../Redux/Actions/designsActions";
 
 export default function Design_Card(props) {
-  const { id, name, image, likes, comments } = props;
   const dispatch = useDispatch();
   const [comment, setComment] = useState("");
+  const { id, name, image, likes, comments } = props;
 
   const designs = useSelector((state) => state.designReducer);
   const currentUser = useSelector((state) => state.userReducer);
@@ -40,7 +37,6 @@ export default function Design_Card(props) {
   const hanldleLike = () => {
     dispatch(asyncLikeDesign(id));
   };
-  console.log(comment);
 
   const handleChange = (e) => {
     setComment(e.target.value);
@@ -54,6 +50,9 @@ export default function Design_Card(props) {
     }
   };
 
+  const boldText = { fontSize: "15px", fontWeight: 600 };
+  const lightText = { fontSize: "15px", fontWeight: 200 };
+
   return (
     <Grid id="card" p={2} item xs={12} sm={6} md={4} lg={4}>
       <Stack>
@@ -61,7 +60,6 @@ export default function Design_Card(props) {
           sx={{
             height: "53vh",
             backgroundColor: "transparent",
-            // boxShadow: "none",
           }}
         >
           <CardMedia
@@ -95,26 +93,16 @@ export default function Design_Card(props) {
           </div>
 
           <Stack spacing={1} ml={1.5} direction="row">
-            <Typography sx={{ fontSize: "15px", fontWeight: 600 }}>
-              {likes.length}
-            </Typography>
-            <Typography
-              className="noShadow"
-              sx={{ fontSize: "15px", fontWeight: 200 }}
-            >
-              likes
-            </Typography>
+            <Typography sx={boldText}>{likes.length}</Typography>
+            <Typography sx={lightText}>likes</Typography>
           </Stack>
 
           <Grid aria-label="comments" xs={12} item>
             <Stack spacing={1} ml={1.5} direction="row">
-              <Typography sx={{ fontSize: "15px", fontWeight: 600 }}>
+              <Typography sx={boldText}>
                 {comments.length > 0 && comments[comments.length - 1].name}
               </Typography>
-              <Typography
-                className="noShadow"
-                sx={{ fontSize: "15px", fontWeight: 200 }}
-              >
+              <Typography sx={lightText}>
                 {comments.length > 0
                   ? comments[comments.length - 1].comment
                   : "..."}
@@ -125,13 +113,7 @@ export default function Design_Card(props) {
           <Grid aria-label="view-comments" xs={12} item>
             <Stack ml={1.5}>
               <Link to={`/comments/${id}`} style={{ textDecoration: "none" }}>
-                <Typography
-                  sx={{
-                    color: "text.secondary",
-                    fontSize: "15px",
-                    fontWeight: 200,
-                  }}
-                >
+                <Typography color="text.secondary" sx={lightText}>
                   {`View all ${comments.length}
                 comments`}
                 </Typography>

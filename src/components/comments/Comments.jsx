@@ -27,7 +27,6 @@ export default function Comments() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const designs = useSelector((state) => state.designReducer);
-  console.log({ designs });
   const currentUser = useSelector((state) => state.userReducer);
   const design = designs.find((design) => design.id === parseInt(id));
 
@@ -81,22 +80,6 @@ export default function Comments() {
         </Grid>
         <Grid item>
           <Stack spacing={1}>
-            <Stack
-              display={{ sm: "none" }}
-              sx={{ width: "96vw", mt: 0.5 }}
-              aria-label="emoji"
-              justifyContent="space-evenly"
-              direction="row"
-            >
-              <Box sx={{ fontSize: "23px" }}> 🙌 </Box>
-              <Box sx={{ fontSize: "23px" }}> 😕 </Box>
-              <Box sx={{ fontSize: "23px" }}> 🔥 </Box>
-              <Box sx={{ fontSize: "23px" }}> ❤️ </Box>
-              <Box sx={{ fontSize: "23px" }}> 😍 </Box>
-              <Box sx={{ fontSize: "23px" }}> 😮 </Box>
-              <Box sx={{ fontSize: "23px" }}> 🤣 </Box>
-            </Stack>
-
             <Stack direction="row">
               <Box>
                 <Avatar
