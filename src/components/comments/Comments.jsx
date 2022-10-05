@@ -105,9 +105,7 @@ export default function Comments() {
               </Box>
 
               <IconButton onClick={handleComment}>
-                <Typography ml={2.5} color="primary.main">
-                  Post
-                </Typography>
+                <Typography color="primary.main">Post</Typography>
               </IconButton>
             </Stack>
           </Stack>
